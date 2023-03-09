@@ -62,9 +62,8 @@ img {
   vertical-align: top;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: inherit;
-  font-weight: 400;
+body {
+  font-family: "StratosSkyeng";
 }
 
 .header {
@@ -87,6 +86,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 48px;
   text-align: center;
   margin-top: 52px;
+  color: #004980;
 }
 .header__form {
   margin-top: 48px;

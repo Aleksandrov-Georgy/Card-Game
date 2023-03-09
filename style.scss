@@ -36,9 +36,10 @@ a, a:visited {text-decoration: none;color: inherit;}
 ul li {list-style: none;}
 img {vertical-align: top;}
 
-h1, h2, h3, h4, h5, h6 {font-size: inherit; font-weight: 400;}
-
-
+body {
+    font-family: "StratosSkyeng";
+}
+ 
 .header {
     background-color: #004980;
     width: 100%;
@@ -59,6 +60,7 @@ h1, h2, h3, h4, h5, h6 {font-size: inherit; font-weight: 400;}
             line-height: 48px;
             text-align: center;
             margin-top: 52px;
+            color: #004980;
         }        
     }
 
