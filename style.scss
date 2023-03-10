@@ -36,6 +36,19 @@ a, a:visited {text-decoration: none;color: inherit;}
 ul li {list-style: none;}
 img {vertical-align: top;}
 
+  @font-face {
+    font-family: 'StratosSkyeng';
+    src: url('/Шрифт/statosskyeng-v1.001/Web/');
+    src: local('StratosSkyeng'), local('StratosSkyeng'),
+      url('/Шрифт/statosskyeng-v1.001/Web/stratosskyengweb-regular.woff2') format('woff2'),
+      url('/Шрифт/statosskyeng-v1.001/Web/stratosskyengweb-regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+
+
 body {
     font-family: "StratosSkyeng";
 }
@@ -136,11 +149,13 @@ body {
     }
 
     &__min {
+        font-weight: 400;
         padding: 22px 0px 0px 0px;
         margin: 0px 57px 0px 61px;
     }
 
     &__sek {
+        font-weight: 400;
         padding: 22px 0px 0px 0px;
     }
 
