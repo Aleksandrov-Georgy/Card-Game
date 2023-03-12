@@ -105,7 +105,20 @@ body {
             background: #FFFFFF;
             border-radius: 12px;
             justify-content: center;
-            
+           
+        }
+
+        &__button_1:focus{
+            background-color: #00498087;
+            color: #FFFFFF;
+        }
+        &__button_2:focus{
+            background-color: #00498087;
+            color: #FFFFFF;
+        }
+        &__button_3:focus{
+            background-color: #00498087;
+            color: #FFFFFF;
         }
 
         &__submit {
@@ -192,4 +205,9 @@ body {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+}
+
+.error {
+    background-color: #ff936887;
+    color: white;
 }
