@@ -146,7 +146,7 @@ body {
 }
 .header2 {
     display: flex;
-    gap: 56.4%;
+    justify-content: space-between;
 
     &__timer {
         font-style: normal;
@@ -164,7 +164,7 @@ body {
     &__min {
         font-weight: 400;
         padding: 22px 0px 0px 0px;
-        margin: 0px 57px 0px 61px;
+        margin: 0px 57px 0px 58px;
     }
 
     &__sek {
@@ -205,9 +205,17 @@ body {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    
 }
 
 .error {
     background-color: #ff936887;
     color: white;
 }
+
+
+.card {
+    cursor: pointer;
+
+}
+
