@@ -9,7 +9,10 @@ module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   module: {
   rules: [
-    { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
+    {
+      test: /\.css$/,
+      use: [MiniCssExtractPlugin.loader, "css-loader"],
+    },
     {
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
       type: "asset/resource",
@@ -19,6 +22,12 @@ module.exports = {
       type: "asset/resource",
     },
   ]
+  },
+  optimization: {
+    minimizer: [
+      '...',
+      new CssMinimizerPlugin(),
+    ],
   },
   devtool: process.env.NODE_ENV === "production" ? "hidden-source-map" : "source-map",
   output: {
@@ -37,3 +46,4 @@ module.exports = {
     new MiniCssExtractPlugin(),
   ]
 }
+

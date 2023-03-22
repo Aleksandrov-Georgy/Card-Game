@@ -51,58 +51,94 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     function creationOfGameCards() {
-        if(selectedLevel === 1) {
-            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-
-            for (let i = 0; i < 3; i++) {
-                const img = document.createElement('img');
-                img.classList.add('cards')
-                img.setAttribute('id', nameCard[i][0])
-                img.src = nameCard[i][1];
-                gameField.appendChild(img);
-                
-                const img2 = document.createElement('img');
-                img2.classList.add('cards')
-                img2.setAttribute('id', nameCard[i][0])
-                img2.src = nameCard[i][1];
-                gameField.appendChild(img2);
-            }            
-        } else if (selectedLevel === 2) {
-            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-
-            for (let i = 0; i < 6; i++) {
-                const img = document.createElement('img');
-                img.classList.add('cards')
-                img.setAttribute('id', nameCard[i][0])
-                img.src = nameCard[i][1];
-                gameField.appendChild(img);
-                
-                const img2 = document.createElement('img');
-                img2.classList.add('cards')
-                img2.setAttribute('id', nameCard[i][0])
-                img2.src = nameCard[i][1];
-                gameField.appendChild(img2);
-            }
-        } else if (selectedLevel === 3) {
-            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-            console.log(nameCard);
-
-            for (let i = 0; i < 9; i++) {
-                const img = document.createElement('img');
-                img.classList.add('cards')
-                img.setAttribute('id', nameCard[i][0])
-                img.src = nameCard[i][1];
-                gameField.appendChild(img);
-                
-                const img2 = document.createElement('img');
-                img2.classList.add('cards')
-                img2.setAttribute('id', nameCard[i][0])
-                img2.src = nameCard[i][1];
-                gameField.appendChild(img2);
+        let countCart = 0
+    
+        switch (selectedLevel){
+            case 1:
+                countCart = 6
+            case 2:
+                countCart = 12
+            case 3:
+                countCart = 18
         };
+        const sources = Object.entries(values)
+
+        const nameCards = [...sources, ...sources].sort(
+        () => Math.random() - 0.5
+        )
+
+        // после уже делаешь по одному разу
+
+
+        for (let i = 0; i < countCart; i++) {
+        const img = document.createElement("img");
+        img.classList.add("cards");
+        img.setAttribute("id", nameCards[i][0]);
+        img.src = nameCards[0][1];
+        gameField.appendChild(img);
+
+        }
+
+
+
+
+
+
+
+
+
+    //     if(selectedLevel === 1) {
+    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
+
+    //         for (let i = 0; i < 3; i++) {
+    //             const img = document.createElement('img');
+    //             img.classList.add('cards')
+    //             img.setAttribute('id', nameCard[i][0])
+    //             img.src = nameCard[i][1];
+    //             gameField.appendChild(img);
+                
+    //             const img2 = document.createElement('img');
+    //             img2.classList.add('cards')
+    //             img2.setAttribute('id', nameCard[i][0])
+    //             img2.src = nameCard[i][1];
+    //             gameField.appendChild(img2);
+    //         }            
+    //     } else if (selectedLevel === 2) {
+    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
+
+    //         for (let i = 0; i < 6; i++) {
+    //             const img = document.createElement('img');
+    //             img.classList.add('cards')
+    //             img.setAttribute('id', nameCard[i][0])
+    //             img.src = nameCard[i][1];
+    //             gameField.appendChild(img);
+                
+    //             const img2 = document.createElement('img');
+    //             img2.classList.add('cards')
+    //             img2.setAttribute('id', nameCard[i][0])
+    //             img2.src = nameCard[i][1];
+    //             gameField.appendChild(img2);
+    //         }
+    //     } else if (selectedLevel === 3) {
+    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
+    //         console.log(nameCard);
+
+    //         for (let i = 0; i < 9; i++) {
+    //             const img = document.createElement('img');
+    //             img.classList.add('cards')
+    //             img.setAttribute('id', nameCard[i][0])
+    //             img.src = nameCard[i][1];
+    //             gameField.appendChild(img);
+                
+    //             const img2 = document.createElement('img');
+    //             img2.classList.add('cards')
+    //             img2.setAttribute('id', nameCard[i][0])
+    //             img2.src = nameCard[i][1];
+    //             gameField.appendChild(img2);
+    //     };
 
       
-    }}
+    // }
 
     const selectedCards = [];
 
@@ -164,4 +200,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
         stopWatchValue.setAttribute('value', min + '.' + sec)
     }
-})
+}})
