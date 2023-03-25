@@ -10,7 +10,7 @@ module.exports = {
   module: {
   rules: [
     {
-      test: /\.css$/,
+      test: /\.css$/i,
       use: [MiniCssExtractPlugin.loader, "css-loader"],
     },
     {
@@ -25,11 +25,10 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      '...',
-      new CssMinimizerPlugin(),
+      '...', new CssMinimizerPlugin(),
     ],
   },
-  devtool: process.env.NODE_ENV === "production" ? "hidden-source-map" : "source-map",
+  devtool:  process.env.NODE_ENV === "production" ? "hidden-source-map" : "source-map",
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
