@@ -1,11 +1,72 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./style.css":
+/*!*******************!*\
+  !*** ./style.css ***!
+  \*******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
+var __webpack_exports__ = {};
 /*!******************!*\
   !*** ./index.js ***!
   \******************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./style.css");
+
+
 document.addEventListener('DOMContentLoaded', () => {
+
     localStorage.removeItem('level');
 
     const formLevel = document.querySelector('.header__form');
@@ -30,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             console.log('error');
         }
-    
     })
 })
 
@@ -42,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
 /*!**************!*\
   !*** ./2.js ***!
   \**************/
-document.addEventListener('DOMContentLoaded', () => {
 
     const gameField = document.querySelector('.game-field');
     const selectedLevel = Number(localStorage.getItem('level'));
@@ -82,137 +141,102 @@ document.addEventListener('DOMContentLoaded', () => {
         heartsK:'./img-cart/cart/король черви.png',
         diamondT: './img-cart/cart/туз бубны.png',
         clubsT: './img-cart/cart/туз крести.png',
-        spadesT:'./img-cart/cart/туз пики.png',
+        spadesT:'.img-cart/cart/туз пики.png',
         heartsT:'./img-cart/cart/туз черви.png',
     };
 
     creationOfGameCards();
-    stopWatch();
+    // stopWatch();
     game();
 
-    buttonStartAgain.addEventListener('click', () => {
-        window.location.href = 'index.html';
-    })
+    // buttonStartAgain.addEventListener('click', () => {
+    //     window.location.href = 'index.html';
+    // })
 
     function creationOfGameCards() {
-        let countCart = 0
-    
-        switch (selectedLevel){
-            case 1:
-                countCart = 6
-            case 2:
-                countCart = 12
-            case 3:
-                countCart = 18
-        };
-        const sources = Object.entries(values)
+        if(selectedLevel === 1) {
+            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
 
-        const nameCards = [...sources, ...sources].sort(
-        () => Math.random() - 0.5
-        )
+            for (let i = 0; i < 3; i++) {
+                const img = document.createElement('img');
+                img.classList.add('cards')
+                img.setAttribute('id', nameCard[i][0])
+                img.src = nameCard[i][1];
+                gameField.appendChild(img);
+                
+                const img2 = document.createElement('img');
+                img2.classList.add('cards')
+                img2.setAttribute('id', nameCard[i][0])
+                img2.src = nameCard[i][1];
+                gameField.appendChild(img2);
+            }            
+        } else if (selectedLevel === 2) {
+            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
 
-        // после уже делаешь по одному разу
+            for (let i = 0; i < 6; i++) {
+                const img = document.createElement('img');
+                img.classList.add('cards')
+                img.setAttribute('id', nameCard[i][0])
+                img.src = nameCard[i][1];
+                gameField.appendChild(img);
+                
+                const img2 = document.createElement('img');
+                img2.classList.add('cards')
+                img2.setAttribute('id', nameCard[i][0])
+                img2.src = nameCard[i][1];
+                gameField.appendChild(img2);
+            }
+        } else if (selectedLevel === 3) {
+            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
+            console.log(nameCard);
 
-
-        for (let i = 0; i < countCart; i++) {
-        const img = document.createElement("img");
-        img.classList.add("cards");
-        img.setAttribute("id", nameCards[i][0]);
-        img.src = nameCards[0][1];
-        gameField.appendChild(img);
-
+            for (let i = 0; i < 9; i++) {
+                const img = document.createElement('img');
+                img.classList.add('cards')
+                img.setAttribute('id', nameCard[i][0])
+                img.src = nameCard[i][1];
+                gameField.appendChild(img);
+                
+                const img2 = document.createElement('img');
+                img2.classList.add('cards')
+                img2.setAttribute('id', nameCard[i][0])
+                img2.src = nameCard[i][1];
+                gameField.appendChild(img2);
+            };      
         }
-
-
-
-
-
-
-
-
-
-    //     if(selectedLevel === 1) {
-    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-
-    //         for (let i = 0; i < 3; i++) {
-    //             const img = document.createElement('img');
-    //             img.classList.add('cards')
-    //             img.setAttribute('id', nameCard[i][0])
-    //             img.src = nameCard[i][1];
-    //             gameField.appendChild(img);
-                
-    //             const img2 = document.createElement('img');
-    //             img2.classList.add('cards')
-    //             img2.setAttribute('id', nameCard[i][0])
-    //             img2.src = nameCard[i][1];
-    //             gameField.appendChild(img2);
-    //         }            
-    //     } else if (selectedLevel === 2) {
-    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-
-    //         for (let i = 0; i < 6; i++) {
-    //             const img = document.createElement('img');
-    //             img.classList.add('cards')
-    //             img.setAttribute('id', nameCard[i][0])
-    //             img.src = nameCard[i][1];
-    //             gameField.appendChild(img);
-                
-    //             const img2 = document.createElement('img');
-    //             img2.classList.add('cards')
-    //             img2.setAttribute('id', nameCard[i][0])
-    //             img2.src = nameCard[i][1];
-    //             gameField.appendChild(img2);
-    //         }
-    //     } else if (selectedLevel === 3) {
-    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-    //         console.log(nameCard);
-
-    //         for (let i = 0; i < 9; i++) {
-    //             const img = document.createElement('img');
-    //             img.classList.add('cards')
-    //             img.setAttribute('id', nameCard[i][0])
-    //             img.src = nameCard[i][1];
-    //             gameField.appendChild(img);
-                
-    //             const img2 = document.createElement('img');
-    //             img2.classList.add('cards')
-    //             img2.setAttribute('id', nameCard[i][0])
-    //             img2.src = nameCard[i][1];
-    //             gameField.appendChild(img2);
-    //     };
-
-      
-    // }
+    }
 
     const selectedCards = [];
 
-    function game() {
-        const card = document.querySelectorAll('.cards').forEach(element => {
-            setTimeout(() => {
-                element.src = './img-cart/рубашка.png';
-            }, 5000);
+    // function game() {
+    //     const card = document.querySelectorAll('.cards').forEach(element => {
+    //         setTimeout(() => {
+    //             element.src = './dist/static/рубашка.png';
+    //         }, 5000);
 
-            element.addEventListener('click', () => {
-                const cardKey = element.id;
-                selectedCards.push(cardKey)
-                element.src = arrCardTest[cardKey]; 
-                if(selectedCards.length === 2) {
-                    setTimeout(() => {
-                        gameOver();
-                    }, 500);
+    //         element.addEventListener('click', () => {
+    //             const cardKey = element.id;
+    //             selectedCards.push(cardKey)
+    //             element.src = arrCardTest[cardKey]; 
+    //             if(selectedCards.length === 2) {
+    //                 setTimeout(() => {
+    //                     gameOver();
+    //                 }, 500);
                    
-                }             
-            })
-        });
+    //             }             
+    //         })
+    //     });
 
         
-    }
+    // }
 
     function gameOver() {
         if(selectedCards[0] === selectedCards[1]) {
+            clearInterval(stopWatchTimer);
             alert('Вы победили');
         } else {
             alert('Вы проиграли');
+            clearInterval(stopWatchTimer);
         }
     }
 
@@ -222,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sec = 0;
         let min = 0;
 
-        setInterval(() => {
+        const stopWatchTimer = setInterval(() => {
             sec++;
             if(sec <= 9) {
                 stopWatch.textContent = '0' + min + '.' + '0' + sec;
@@ -244,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
         stopWatchValue.setAttribute('value', min + '.' + sec)
     }
-}})
+
 })();
 
 /******/ })()

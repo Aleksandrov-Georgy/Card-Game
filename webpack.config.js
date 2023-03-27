@@ -4,7 +4,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: ['./index.js', './2.js'],
@@ -33,11 +33,15 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "static", to: "static" , noErrorOnMissing: true,},
+        { from: "img-cart", to: "static" },
       ],
     }),
     new HtmlWebpackPlugin({
-        template: "./index.html",
+        template: "./index.html", 
+    }),
+    new HtmlWebpackPlugin({
+      filename: '2.html',
+      template: 'C:/Users/Георгий/OneDrive/Рабочий стол/HM/2.html',
     }),
     new MiniCssExtractPlugin(),
   ],

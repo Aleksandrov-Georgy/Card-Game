@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
 
     const gameField = document.querySelector('.game-field');
     const selectedLevel = Number(localStorage.getItem('level'));
@@ -38,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         heartsK:'./img-cart/cart/король черви.png',
         diamondT: './img-cart/cart/туз бубны.png',
         clubsT: './img-cart/cart/туз крести.png',
-        spadesT:'./img-cart/cart/туз пики.png',
+        spadesT:'.img-cart/cart/туз пики.png',
         heartsT:'./img-cart/cart/туз черви.png',
     };
 
     creationOfGameCards();
-    stopWatch();
+    // stopWatch();
     game();
 
     buttonStartAgain.addEventListener('click', () => {
@@ -51,101 +50,64 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     function creationOfGameCards() {
-        let countCart = 0
-    
-        switch (selectedLevel){
-            case 1:
-                countCart = 6
-            case 2:
-                countCart = 12
-            case 3:
-                countCart = 18
-        };
-        const sources = Object.entries(values)
+        if(selectedLevel === 1) {
+            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
 
-        const nameCards = [...sources, ...sources].sort(
-        () => Math.random() - 0.5
-        )
+            for (let i = 0; i < 3; i++) {
+                const img = document.createElement('img');
+                img.classList.add('cards')
+                img.setAttribute('id', nameCard[i][0])
+                img.src = nameCard[i][1];
+                gameField.appendChild(img);
+                
+                const img2 = document.createElement('img');
+                img2.classList.add('cards')
+                img2.setAttribute('id', nameCard[i][0])
+                img2.src = nameCard[i][1];
+                gameField.appendChild(img2);
+            }            
+        } else if (selectedLevel === 2) {
+            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
 
-        // после уже делаешь по одному разу
+            for (let i = 0; i < 6; i++) {
+                const img = document.createElement('img');
+                img.classList.add('cards')
+                img.setAttribute('id', nameCard[i][0])
+                img.src = nameCard[i][1];
+                gameField.appendChild(img);
+                
+                const img2 = document.createElement('img');
+                img2.classList.add('cards')
+                img2.setAttribute('id', nameCard[i][0])
+                img2.src = nameCard[i][1];
+                gameField.appendChild(img2);
+            }
+        } else if (selectedLevel === 3) {
+            const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
+            console.log(nameCard);
 
-
-        for (let i = 0; i < countCart; i++) {
-        const img = document.createElement("img");
-        img.classList.add("cards");
-        img.setAttribute("id", nameCards[i][0]);
-        img.src = nameCards[0][1];
-        gameField.appendChild(img);
-
+            for (let i = 0; i < 9; i++) {
+                const img = document.createElement('img');
+                img.classList.add('cards')
+                img.setAttribute('id', nameCard[i][0])
+                img.src = nameCard[i][1];
+                gameField.appendChild(img);
+                
+                const img2 = document.createElement('img');
+                img2.classList.add('cards')
+                img2.setAttribute('id', nameCard[i][0])
+                img2.src = nameCard[i][1];
+                gameField.appendChild(img2);
+            };      
         }
-
-
-
-
-
-
-
-
-
-    //     if(selectedLevel === 1) {
-    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-
-    //         for (let i = 0; i < 3; i++) {
-    //             const img = document.createElement('img');
-    //             img.classList.add('cards')
-    //             img.setAttribute('id', nameCard[i][0])
-    //             img.src = nameCard[i][1];
-    //             gameField.appendChild(img);
-                
-    //             const img2 = document.createElement('img');
-    //             img2.classList.add('cards')
-    //             img2.setAttribute('id', nameCard[i][0])
-    //             img2.src = nameCard[i][1];
-    //             gameField.appendChild(img2);
-    //         }            
-    //     } else if (selectedLevel === 2) {
-    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-
-    //         for (let i = 0; i < 6; i++) {
-    //             const img = document.createElement('img');
-    //             img.classList.add('cards')
-    //             img.setAttribute('id', nameCard[i][0])
-    //             img.src = nameCard[i][1];
-    //             gameField.appendChild(img);
-                
-    //             const img2 = document.createElement('img');
-    //             img2.classList.add('cards')
-    //             img2.setAttribute('id', nameCard[i][0])
-    //             img2.src = nameCard[i][1];
-    //             gameField.appendChild(img2);
-    //         }
-    //     } else if (selectedLevel === 3) {
-    //         const nameCard = Object.entries(arrCardTest).sort(()=>Math.random()-0.5);
-    //         console.log(nameCard);
-
-    //         for (let i = 0; i < 9; i++) {
-    //             const img = document.createElement('img');
-    //             img.classList.add('cards')
-    //             img.setAttribute('id', nameCard[i][0])
-    //             img.src = nameCard[i][1];
-    //             gameField.appendChild(img);
-                
-    //             const img2 = document.createElement('img');
-    //             img2.classList.add('cards')
-    //             img2.setAttribute('id', nameCard[i][0])
-    //             img2.src = nameCard[i][1];
-    //             gameField.appendChild(img2);
-    //     };
-
-      
-    // }
+    }
 
     const selectedCards = [];
 
     function game() {
         const card = document.querySelectorAll('.cards').forEach(element => {
             setTimeout(() => {
-                element.src = './img-cart/рубашка.png';
+                element.src = './dist/static/рубашка.png';
             }, 5000);
 
             element.addEventListener('click', () => {
@@ -166,9 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function gameOver() {
         if(selectedCards[0] === selectedCards[1]) {
+            clearInterval(stopWatchTimer);
             alert('Вы победили');
         } else {
             alert('Вы проиграли');
+            clearInterval(stopWatchTimer);
         }
     }
 
@@ -178,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sec = 0;
         let min = 0;
 
-        setInterval(() => {
+        const stopWatchTimer = setInterval(() => {
             sec++;
             if(sec <= 9) {
                 stopWatch.textContent = '0' + min + '.' + '0' + sec;
@@ -200,4 +164,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
         stopWatchValue.setAttribute('value', min + '.' + sec)
     }
-}})

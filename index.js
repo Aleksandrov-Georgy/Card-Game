@@ -1,4 +1,7 @@
+import './style.css';
+
 document.addEventListener('DOMContentLoaded', () => {
+
     localStorage.removeItem('level');
 
     const formLevel = document.querySelector('.header__form');
@@ -23,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             console.log('error');
         }
-    
     })
 })
 
