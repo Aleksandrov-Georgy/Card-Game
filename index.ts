@@ -1,4 +1,5 @@
 import './style.css';
+import * as _ from "lodash";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -11,10 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonLevel.forEach(element => {
         element.addEventListener('click', (event) => {
             event.stopPropagation();
+            //@ts-ignore
             localStorage.setItem('level', element.value);
         })        
     });
-    
+    //@ts-ignore    
     formLevel.addEventListener('click', () => {
         if(localStorage.getItem('level')) {
             window.location.href = '2.html';

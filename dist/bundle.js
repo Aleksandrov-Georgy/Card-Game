@@ -460,45 +460,41 @@ var __webpack_exports__ = {};
 (() => {
 var __webpack_exports__ = {};
 /*!******************!*\
-  !*** ./index.js ***!
+  !*** ./index.ts ***!
   \******************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./style.css");
 
-
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('DOMContentLoaded', function () {
     localStorage.removeItem('level');
-
-    const formLevel = document.querySelector('.header__form__submit');
-    const buttonLevel = document.querySelectorAll('.button');
-    
-    
-    buttonLevel.forEach(element => {
-        element.addEventListener('click', (event) => {
+    var formLevel = document.querySelector('.header__form__submit');
+    var buttonLevel = document.querySelectorAll('.button');
+    buttonLevel.forEach(function (element) {
+        element.addEventListener('click', function (event) {
             event.stopPropagation();
+            //@ts-ignore
             localStorage.setItem('level', element.value);
-        })        
+        });
     });
-    
-    formLevel.addEventListener('click', () => {
-        if(localStorage.getItem('level')) {
+    //@ts-ignore    
+    formLevel.addEventListener('click', function () {
+        if (localStorage.getItem('level')) {
             window.location.href = '2.html';
-        } else {
-            buttonLevel.forEach(element => {
-                element.classList.add('error')
+        }
+        else {
+            buttonLevel.forEach(function (element) {
+                element.classList.add('error');
             });
         }
-    })
-})
-
+    });
+});
 
 })();
 
 // This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
 (() => {
 /*!**************!*\
-  !*** ./2.js ***!
+  !*** ./2.ts ***!
   \**************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./img-cart/cart/6 бубны.png */ "./img-cart/cart/6 бубны.png");
@@ -575,177 +571,142 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    const gameField = document.querySelector('.game-field');
-    const selectedLevel = Number(localStorage.getItem('level'));
-    const buttonStartAgain = document.querySelector('.header2__button')
-    const arrCardTest = [    
-        _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_0__,
-        _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_1__,
-        _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_2__,
-        _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_3__,
-        _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_4__,
-        _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_5__,
-        _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_6__,
-        _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_7__,
-        _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_8__,
-        _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_9__,
-        _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_10__,
-        _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_11__,
-        _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_12__,
-        _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_13__,
-        _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_14__,
-        _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_15__,
-        _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_16__,
-        _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_17__,
-        _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_18__,
-        _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_19__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_20__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_21__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_22__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_23__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_24__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_25__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_26__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_27__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_28__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_29__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_30__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_31__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_32__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_33__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_34__,
-        _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_35__,
-    ];
-    const randomArrCardTest = arrCardTest.sort(()=>Math.random()-0.5);
-
-    creationOfGameCards();
-    // stopWatch();
-    game();
-
-    // buttonStartAgain.addEventListener('click', () => {
-    //     window.location.href = 'index.html';
-    // })
-
-    function creationOfGameCards() {
-        
-
-        if(selectedLevel === 1) {
-            for (let i = 0; i < 3; i++) {
-                const img = document.createElement('img');
-                img.classList.add('cards')
-                img.setAttribute('id', randomArrCardTest[i]);
-                img.src = randomArrCardTest[i];
-                gameField.appendChild(img);
-
-                const img2 = document.createElement('img');
-                img2.classList.add('cards')
-                img2.setAttribute('id', randomArrCardTest[i]);
-                img2.src = randomArrCardTest[i];
-                gameField.appendChild(img2);               
-            }  
-        } else if (selectedLevel === 2) {
-            for (let i = 0; i < 6; i++) {
-                const img = document.createElement('img');
-                img.classList.add('cards')
-                img.setAttribute('id', randomArrCardTest[i]);
-                img.src = randomArrCardTest[i];
-                gameField.appendChild(img);
-
-                const img2 = document.createElement('img');
-                img2.classList.add('cards')
-                img2.setAttribute('id', randomArrCardTest[i]);
-                img2.src = randomArrCardTest[i];
-                gameField.appendChild(img2);
+var gameField = document.querySelector(".game-field");
+var selectedLevel = Number(localStorage.getItem("level"));
+var buttonStartAgain = document.querySelector(".header2__button");
+var arrCardTest = [
+    _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_0__,
+    _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_1__,
+    _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_2__,
+    _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_3__,
+    _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_4__,
+    _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_5__,
+    _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_6__,
+    _img_cart_cart_7_png__WEBPACK_IMPORTED_MODULE_7__,
+    _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_8__,
+    _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_9__,
+    _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_10__,
+    _img_cart_cart_8_png__WEBPACK_IMPORTED_MODULE_11__,
+    _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_12__,
+    _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_13__,
+    _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_14__,
+    _img_cart_cart_9_png__WEBPACK_IMPORTED_MODULE_15__,
+    _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_16__,
+    _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_17__,
+    _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_18__,
+    _img_cart_cart_10_png__WEBPACK_IMPORTED_MODULE_19__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_20__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_21__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_22__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_23__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_24__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_25__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_26__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_27__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_28__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_29__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_30__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_31__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_32__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_33__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_34__,
+    _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_35__,
+];
+var randomArrCardTest = arrCardTest.sort(function () { return Math.random() - 0.5; });
+creationOfGameCards();
+stopWatch();
+game();
+// buttonStartAgain.addEventListener('click', () => {
+//     window.location.href = 'index.html';
+// })
+function creationOfGameCards() {
+    if (selectedLevel === 1) {
+        for (var i = 0; i < 3; i++) {
+            var img = document.createElement("img");
+            img.classList.add("cards");
+            img.setAttribute("id", randomArrCardTest[i]);
+            img.src = randomArrCardTest[i];
+            gameField.appendChild(img);
+            var img2 = document.createElement("img");
+            img2.classList.add("cards");
+            img2.setAttribute("id", randomArrCardTest[i]);
+            img2.src = randomArrCardTest[i];
+            gameField.appendChild(img2);
+        }
+    }
+    else if (selectedLevel === 2) {
+        for (var i = 0; i < 6; i++) {
+            var img = document.createElement("img");
+            img.classList.add("cards");
+            img.setAttribute("id", randomArrCardTest[i]);
+            img.src = randomArrCardTest[i];
+            gameField.appendChild(img);
+            var img2 = document.createElement("img");
+            img2.classList.add("cards");
+            img2.setAttribute("id", randomArrCardTest[i]);
+            img2.src = randomArrCardTest[i];
+            gameField.appendChild(img2);
+        }
+    }
+    else if (selectedLevel === 3) {
+        for (var i = 0; i < 9; i++) {
+            var img = document.createElement("img");
+            img.classList.add("cards");
+            img.setAttribute("id", randomArrCardTest[i]);
+            img.src = randomArrCardTest[i];
+            gameField.appendChild(img);
+            var img2 = document.createElement("img");
+            img2.classList.add("cards");
+            img2.setAttribute("id", randomArrCardTest[i]);
+            img2.src = randomArrCardTest[i];
+            gameField.appendChild(img2);
+        }
+    }
+}
+var selectedCards = [];
+function game() {
+    var card = document.querySelectorAll(".cards").forEach(function (element) {
+        setTimeout(function () {
+            //@ts-ignore
+            element.src = _img_cart_png__WEBPACK_IMPORTED_MODULE_36__;
+        }, 5000);
+        element.addEventListener("click", function () {
+            var cardId = element.id;
+            selectedCards.push(cardId);
+            console.log(cardId);
+            //@ts-ignore
+            element.src = cardId;
+            if (selectedCards.length === 2) {
+                setTimeout(function () {
+                    gameOver();
+                }, 500);
             }
-        } else if (selectedLevel === 3) {
-            for (let i = 0; i < 9; i++) {
-                const img = document.createElement('img');
-                img.classList.add('cards')
-                img.setAttribute('id', randomArrCardTest[i]);
-                img.src = randomArrCardTest[i];
-                gameField.appendChild(img);
-
-                const img2 = document.createElement('img');
-                img2.classList.add('cards')
-                img2.setAttribute('id', randomArrCardTest[i]);
-                img2.src = randomArrCardTest[i];
-                gameField.appendChild(img2);
-            };      
+        });
+    });
+}
+function gameOver() {
+    if (selectedCards[0] === selectedCards[1]) {
+        alert("Вы победили");
+    }
+    else {
+        alert("Вы проиграли");
+    }
+}
+function stopWatch() {
+    var time = document.querySelector(".header2__stopwatch_content");
+    var min = 0;
+    var sec = 0;
+    var stopWatchTimer = setInterval(function () {
+        sec++;
+        if (sec === 59) {
+            min++;
+            sec = 0;
         }
-    }
-
-    const selectedCards = [];
-
-    function game() {
-        const card = document.querySelectorAll('.cards').forEach(element => {
-            setTimeout(() => {
-                element.src = _img_cart_png__WEBPACK_IMPORTED_MODULE_36__;
-            }, 5000);
-
-            element.addEventListener('click', () => {
-                const cardId = element.id;
-                selectedCards.push(cardId)
-                console.log(cardId);
-                element.src = cardId; 
-                if(selectedCards.length === 2) {
-                    setTimeout(() => {
-                        gameOver();
-                    }, 500);
-                   
-                }             
-            })
-        });        
-    }
-
-    function gameOver() {
-        if(selectedCards[0] === selectedCards[1]) {
-            // clearInterval(stopWatchTimer);
-            alert('Вы победили');
-        } else {
-            alert('Вы проиграли');
-            // clearInterval(stopWatchTimer);
-        }
-    }
-
-    // function stopWatch() {
-    //     const stopWatch = document.querySelector('.header2__stopwatch_content');
-    //     const stopWatchValue = document.querySelector('.header2__stopwatch_content');
-    //     let sec = 0;
-    //     let min = 0;
-
-    //     const stopWatchTimer = setInterval(() => {
-    //         sec++;
-    //         if(sec <= 9) {
-    //             stopWatch.textContent = '0' + min + '.' + '0' + sec;
-    //         }
-    //         if(sec >= 10) {
-    //             stopWatch.textContent = '0' + min + '.' + sec;
-    //         }
-
-    //         if(sec === 59) {
-    //             sec = 00;
-    //             min++;
-    //         }
-    //         if(min >=10) {
-    //             stopWatch.textContent = min + '.' + sec;
-    //             if(sec <= 9) {
-    //                 stopWatch.textContent = min + '.' + '0' + sec;
-    //             }
-    //         }
-    //     }, 1000);
-    //     stopWatchValue.setAttribute('value', min + '.' + sec)
-    // }
+        var timer = (String("".concat(min, ":").concat(sec)));
+        time.textContent = timer;
+        time.setAttribute('value', timer);
+    }, 1000);
+}
 
 })();
 
