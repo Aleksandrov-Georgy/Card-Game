@@ -14,6 +14,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./img-cart/Image.png":
+/*!****************************!*\
+  !*** ./img-cart/Image.png ***!
+  \****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "ac8c1387472731a5e673.png";
+
+/***/ }),
+
 /***/ "./img-cart/cart/10 бубны.png":
 /*!************************************!*\
   !*** ./img-cart/cart/10 бубны.png ***!
@@ -374,6 +384,16 @@ module.exports = __webpack_require__.p + "ac81b81d207a861bd424.png";
 
 /***/ }),
 
+/***/ "./img-cart/losing.png":
+/*!*****************************!*\
+  !*** ./img-cart/losing.png ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "20d8a82296db241727e0.png";
+
+/***/ }),
+
 /***/ "./img-cart/рубашка.png":
 /*!******************************!*\
   !*** ./img-cart/рубашка.png ***!
@@ -534,6 +554,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./img-cart/cart/туз пики.png */ "./img-cart/cart/туз пики.png");
 /* harmony import */ var _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./img-cart/cart/туз черви.png */ "./img-cart/cart/туз черви.png");
 /* harmony import */ var _img_cart_png__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./img-cart/рубашка.png */ "./img-cart/рубашка.png");
+/* harmony import */ var _img_cart_Image_png__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./img-cart/Image.png */ "./img-cart/Image.png");
+/* harmony import */ var _img_cart_losing_png__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./img-cart/losing.png */ "./img-cart/losing.png");
+
+
 
 
 
@@ -679,19 +703,16 @@ function game() {
             element.src = cardId;
             if (selectedCards.length === 2) {
                 setTimeout(function () {
-                    gameOver();
+                    if (selectedCards[0] === selectedCards[1]) {
+                        victory();
+                    }
+                    else {
+                        losing();
+                    }
                 }, 500);
             }
         });
     });
-}
-function gameOver() {
-    if (selectedCards[0] === selectedCards[1]) {
-        victory();
-    }
-    else {
-        losing();
-    }
 }
 function stopWatch() {
     var time = document.querySelector(".header2__stopwatch_content");
@@ -707,18 +728,71 @@ function stopWatch() {
             var timer = String("".concat(min, ":").concat(sec));
             time.textContent = timer;
             time.setAttribute("value", timer);
+            localStorage.setItem("valueTime", timer);
         }
     }, 1000);
 }
 function victory() {
     var win = document.createElement('div');
     win.classList.add('win');
-    gameField.classList.add('win__back');
     head.appendChild(win);
-    console.log('+++');
+    var winContent = document.createElement('div');
+    winContent.classList.add('win__content');
+    head.appendChild(winContent);
+    var img = document.createElement('img');
+    img.src = _img_cart_Image_png__WEBPACK_IMPORTED_MODULE_37__;
+    img.classList.add('win__image');
+    winContent.appendChild(img);
+    var winText = document.createElement('h1');
+    winText.textContent = 'Вы выиграли!';
+    winText.classList.add('win__text');
+    winContent.appendChild(winText);
+    var winTextTime = document.createElement('p');
+    winTextTime.textContent = 'Затраченное время:';
+    winTextTime.classList.add('win__text-time');
+    winContent.appendChild(winTextTime);
+    // const timeSpent = document.createElement('h3');
+    // let timerWatch = localStorage.getItem('valueTime');
+    // timeSpent.textContent = timerWatch;
+    // timeSpent.classList.add('win__time-spent');
+    // winContent.appendChild(winTextTime);
+    var winButton = document.createElement('button');
+    winButton.textContent = 'Играть снова';
+    winButton.classList.add('win__button');
+    winContent.appendChild(winButton);
+    winButton.addEventListener('click', function () {
+        window.location.href = 'index.html';
+    });
 }
 function losing() {
-    console.log('---');
+    var win = document.createElement('div');
+    win.classList.add('win');
+    head.appendChild(win);
+    var winContent = document.createElement('div');
+    winContent.classList.add('win__content');
+    head.appendChild(winContent);
+    var img = document.createElement('img');
+    img.src = _img_cart_losing_png__WEBPACK_IMPORTED_MODULE_38__;
+    img.classList.add('win__image');
+    winContent.appendChild(img);
+    var winText = document.createElement('h1');
+    winText.textContent = 'Вы проиграли!';
+    winText.classList.add('win__text');
+    winContent.appendChild(winText);
+    var winTextTime = document.createElement('p');
+    winTextTime.textContent = 'Затраченное время:';
+    winTextTime.classList.add('win__text-time');
+    winContent.appendChild(winTextTime);
+    // const timeSpent = document.createElement('h3');
+    // timeSpent.classList.add('win__time-spent');
+    // winContent.appendChild(winTextTime);
+    var winButton = document.createElement('button');
+    winButton.textContent = 'Играть снова';
+    winButton.classList.add('win__button');
+    winContent.appendChild(winButton);
+    winButton.addEventListener('click', function () {
+        window.location.href = 'index.html';
+    });
 }
 
 })();
