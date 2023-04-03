@@ -46,7 +46,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: '2.html',
-      template: 'C:/Users/Георгий/OneDrive/Рабочий стол/HM/2.html',
+      template: './2.html',
     }),
     new MiniCssExtractPlugin(),
   ],

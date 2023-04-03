@@ -44,10 +44,16 @@ import spadesT from "./img-cart/cart/туз пики.png";
 import heartsT from "./img-cart/cart/туз черви.png";
 
 import shirt from "./img-cart/рубашка.png";
+import winImage from "./img-cart/Image.png";
+import losingImg from "./img-cart/losing.png";
+
+
+
 
 const gameField: any = document.querySelector(".game-field");
+const head:any= document.querySelector(".header2");
 const selectedLevel = Number(localStorage.getItem("level"));
-const buttonStartAgain = document.querySelector(".header2__button");
+const buttonStartAgain= document.querySelector(".header2__button");
 const arrCardTest = [
   diamond6,
   clubs6,
@@ -161,43 +167,116 @@ function game() {
       element.src = cardId;
       if (selectedCards.length === 2) {
         setTimeout(() => {
-          gameOver();
+          if (selectedCards[0] === selectedCards[1]) {
+              victory();
+            } else {
+              losing();
+          }
         }, 500);
       }
     });
   });
 }
 
-function gameOver() {
-  if (selectedCards[0] === selectedCards[1]) {
-    victory();
-  } else {
-    losing();
-  }
-}
 
 function stopWatch() {
-  const time:any = document.querySelector(".header2__stopwatch_content");
-  let min:number = 0;
-  let sec:number = 0;
+  const time: HTMLElement | null = document.querySelector(
+    ".header2__stopwatch_content"
+  );
+  let min: number = 0;
+  let sec: number = 0;
 
-  const stopWatchTimer = setInterval(() => {
-    sec++;
-    if (sec === 59) {
-      min++;
-      sec = 0;
+  let stopWatchTimer = setInterval(() => {
+    if (time) {
+      sec++;
+      if (sec === 59) {
+        min++;
+        sec = 0;
+      }
+      let timer: string = String(`${min}:${sec}`);
+      time.textContent = timer;
+      time.setAttribute("value", timer);
+      localStorage.setItem("valueTime", timer)
     }
-    let timer:string = (String(`${min}:${sec}`));
-    time.textContent = timer;
-    time.setAttribute('value', timer);
   }, 1000);
+
+  
 }
 
 function victory() {
-    console.log('+++');
+    const win = document.createElement('div');
+    win.classList.add('win');
+    head.appendChild(win)
 
+    const winContent = document.createElement('div');
+    winContent.classList.add('win__content');
+    head.appendChild(winContent);
+
+    const img = document.createElement('img');
+    img.src = winImage;
+    img.classList.add('win__image')
+    winContent.appendChild(img)
+
+    const winText = document.createElement('h1');
+    winText.textContent = 'Вы выиграли!';
+    winText.classList.add('win__text');
+    winContent.appendChild(winText);
+
+    const winTextTime = document.createElement('p');
+    winTextTime.textContent = 'Затраченное время:';
+    winTextTime.classList.add('win__text-time');
+    winContent.appendChild(winTextTime);
+
+    // const timeSpent = document.createElement('h3');
+    // let timerWatch = localStorage.getItem('valueTime');
+    // timeSpent.textContent = timerWatch;
+    // timeSpent.classList.add('win__time-spent');
+    // winContent.appendChild(winTextTime);
+
+    const winButton = document.createElement('button');
+    winButton.textContent = 'Играть снова';
+    winButton.classList.add('win__button');
+    winContent.appendChild(winButton); 
+
+    winButton.addEventListener('click', () => {
+      window.location.href = 'index.html'
+    })
 }
 
 function losing() {
-    console.log('+++');
+  const win = document.createElement('div');
+  win.classList.add('win');
+  head.appendChild(win)
+
+  const winContent = document.createElement('div');
+  winContent.classList.add('win__content');
+  head.appendChild(winContent);
+
+  const img = document.createElement('img');
+  img.src = losingImg;
+  img.classList.add('win__image')
+  winContent.appendChild(img)
+
+  const winText = document.createElement('h1');
+  winText.textContent = 'Вы проиграли!';
+  winText.classList.add('win__text');
+  winContent.appendChild(winText);
+
+  const winTextTime = document.createElement('p');
+  winTextTime.textContent = 'Затраченное время:';
+  winTextTime.classList.add('win__text-time');
+  winContent.appendChild(winTextTime);
+
+  // const timeSpent = document.createElement('h3');
+  // timeSpent.classList.add('win__time-spent');
+  // winContent.appendChild(winTextTime);
+
+  const winButton = document.createElement('button');
+  winButton.textContent = 'Играть снова';
+  winButton.classList.add('win__button');
+  winContent.appendChild(winButton); 
+
+  winButton.addEventListener('click', () => {
+    window.location.href = 'index.html'
+  })
 }

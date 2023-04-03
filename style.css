@@ -154,6 +154,7 @@ body {
   background-color: #004980;
   width: 100%;
   height: 100vh;
+  z-index: 0;
 }
 
 .header2 {
@@ -220,9 +221,68 @@ body {
   cursor: pointer;
 }
 
-.victory {
+.win {
   width: 100%;
   height: 100vh;
+  z-index: 1;
   background: #004980;
   opacity: 0.9;
+  position: absolute;
+}
+.win__content {
+  width: 46.3%;
+  height: 459px;
+  background: #C2F5FF;
+  border-radius: 12px;
+  z-index: 5;
+  position: absolute;
+  margin-top: 158px;
+  margin-left: 26.2%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.win__image {
+  margin-top: 30px;
+}
+.win__text {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #004980;
+  margin-top: 5px;
+}
+.win__text-time {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+  margin-top: 29px;
+}
+.win__time-spent {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  color: #000000;
+  margin-top: 10px;
+}
+.win__button {
+  margin-top: 40px;
+  background: #7AC100;
+  border-radius: 12px;
+  color: #FFFFFF;
+  width: 246px;
+  height: 48px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
 }/*# sourceMappingURL=style.css.map */

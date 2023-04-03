@@ -157,6 +157,7 @@ body {
   background-color: #004980;
   width: 100%;
   height: 100vh;
+  z-index: 1;
 }
 
 .header2 {
@@ -221,6 +222,20 @@ body {
 
 .card {
   cursor: pointer;
+}
+
+.win {
+  width: 46.3%;
+  height: 459px;
+  background: #C2F5FF;
+  border-radius: 12px;
+}
+.win__back {
+  width: 100%;
+  height: 100vh;
+  background: #004980;
+  opacity: 0.9;
+  z-index: 2;
 }/*# sourceMappingURL=style.css.map */
 
 /*# sourceMappingURL=main.css.map*/

@@ -572,6 +572,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var gameField = document.querySelector(".game-field");
+var head = document.querySelector(".header2");
 var selectedLevel = Number(localStorage.getItem("level"));
 var buttonStartAgain = document.querySelector(".header2__button");
 var arrCardTest = [
@@ -686,10 +687,10 @@ function game() {
 }
 function gameOver() {
     if (selectedCards[0] === selectedCards[1]) {
-        alert("Вы победили");
+        victory();
     }
     else {
-        alert("Вы проиграли");
+        losing();
     }
 }
 function stopWatch() {
@@ -697,15 +698,27 @@ function stopWatch() {
     var min = 0;
     var sec = 0;
     var stopWatchTimer = setInterval(function () {
-        sec++;
-        if (sec === 59) {
-            min++;
-            sec = 0;
+        if (time) {
+            sec++;
+            if (sec === 59) {
+                min++;
+                sec = 0;
+            }
+            var timer = String("".concat(min, ":").concat(sec));
+            time.textContent = timer;
+            time.setAttribute("value", timer);
         }
-        var timer = (String("".concat(min, ":").concat(sec)));
-        time.textContent = timer;
-        time.setAttribute('value', timer);
     }, 1000);
+}
+function victory() {
+    var win = document.createElement('div');
+    win.classList.add('win');
+    gameField.classList.add('win__back');
+    head.appendChild(win);
+    console.log('+++');
+}
+function losing() {
+    console.log('---');
 }
 
 })();
