@@ -47,9 +47,6 @@ import shirt from "./img-cart/рубашка.png";
 import winImage from "./img-cart/Image.png";
 import losingImg from "./img-cart/losing.png";
 
-
-
-
 const gameField: any = document.querySelector(".game-field");
 const head:any= document.querySelector(".header2");
 const selectedLevel = Number(localStorage.getItem("level"));
@@ -94,14 +91,15 @@ const arrCardTest = [
 ];
 const randomArrCardTest = arrCardTest.sort(() => Math.random() - 0.5);
 
+buttonStartAgain?.addEventListener('click', () => {
+  window.location.href = './index.html';
+})
 
 creationOfGameCards();
 stopWatch();
 game();
 
-// buttonStartAgain.addEventListener('click', () => {
-//     window.location.href = 'index.html';
-// })
+
 
 function creationOfGameCards() {
   if (selectedLevel === 1) {
@@ -147,8 +145,25 @@ function creationOfGameCards() {
       gameField.appendChild(img2);
     }
   }
-}
 
+  interface Parent {
+    children: string[];
+  }
+
+  
+  shuffleChildren(gameField);
+
+  function shuffleChildren(parent:Parent) {
+    const children = Array.from(parent.children);
+    
+    for (let i = children.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [children[i], children[j]] = [children[j], children[i]];
+    }
+    
+    children.forEach(child => gameField.appendChild(child));
+  }
+}
 const selectedCards: any = [];
 
 function game() {
@@ -161,16 +176,17 @@ function game() {
     element.addEventListener("click", () => {
       const cardId = element.id;
       selectedCards.push(cardId);
-      console.log(cardId);
         //@ts-ignore
 
       element.src = cardId;
       if (selectedCards.length === 2) {
         setTimeout(() => {
           if (selectedCards[0] === selectedCards[1]) {
-              victory();
+            clearInterval(timer);
+            victory();
             } else {
-              losing();
+            clearInterval(timer);
+            losing();
           }
         }, 500);
       }
@@ -178,25 +194,30 @@ function game() {
   });
 }
 
+let timer:any;
+const time: HTMLElement | null = document.querySelector(
+  ".header2__stopwatch_content"
+);
 
 function stopWatch() {
-  const time: HTMLElement | null = document.querySelector(
-    ".header2__stopwatch_content"
-  );
+  
+  
   let min: number = 0;
   let sec: number = 0;
 
-  let stopWatchTimer = setInterval(() => {
+  timer = setInterval(() => {
     if (time) {
-      sec++;
+      sec++;     
       if (sec === 59) {
         min++;
         sec = 0;
       }
-      let timer: string = String(`${min}:${sec}`);
+      
+
+      let timer: string = String(`0${min}: ${sec}`);
+      
       time.textContent = timer;
       time.setAttribute("value", timer);
-      localStorage.setItem("valueTime", timer)
     }
   }, 1000);
 
@@ -227,11 +248,10 @@ function victory() {
     winTextTime.classList.add('win__text-time');
     winContent.appendChild(winTextTime);
 
-    // const timeSpent = document.createElement('h3');
-    // let timerWatch = localStorage.getItem('valueTime');
-    // timeSpent.textContent = timerWatch;
-    // timeSpent.classList.add('win__time-spent');
-    // winContent.appendChild(winTextTime);
+    const timeSpent:any = document.createElement('h3'); 
+    timeSpent.textContent = time?.attributes[1].value;
+    timeSpent.classList.add('win__time-spent');
+    winContent.appendChild(timeSpent);
 
     const winButton = document.createElement('button');
     winButton.textContent = 'Играть снова';
@@ -267,9 +287,10 @@ function losing() {
   winTextTime.classList.add('win__text-time');
   winContent.appendChild(winTextTime);
 
-  // const timeSpent = document.createElement('h3');
-  // timeSpent.classList.add('win__time-spent');
-  // winContent.appendChild(winTextTime);
+  const timeSpent:any = document.createElement('h3'); 
+    timeSpent.textContent = time?.attributes[1].value;
+    timeSpent.classList.add('win__time-spent');
+    winContent.appendChild(timeSpent);
 
   const winButton = document.createElement('button');
   winButton.textContent = 'Играть снова';
@@ -279,4 +300,4 @@ function losing() {
   winButton.addEventListener('click', () => {
     window.location.href = 'index.html'
   })
-}
+} 

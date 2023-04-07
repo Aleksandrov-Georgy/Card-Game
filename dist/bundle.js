@@ -638,12 +638,12 @@ var arrCardTest = [
     _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_35__,
 ];
 var randomArrCardTest = arrCardTest.sort(function () { return Math.random() - 0.5; });
+buttonStartAgain === null || buttonStartAgain === void 0 ? void 0 : buttonStartAgain.addEventListener('click', function () {
+    window.location.href = './index.html';
+});
 creationOfGameCards();
 stopWatch();
 game();
-// buttonStartAgain.addEventListener('click', () => {
-//     window.location.href = 'index.html';
-// })
 function creationOfGameCards() {
     if (selectedLevel === 1) {
         for (var i = 0; i < 3; i++) {
@@ -687,6 +687,16 @@ function creationOfGameCards() {
             gameField.appendChild(img2);
         }
     }
+    shuffleChildren(gameField);
+    function shuffleChildren(parent) {
+        var _a;
+        var children = Array.from(parent.children);
+        for (var i = children.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            _a = [children[j], children[i]], children[i] = _a[0], children[j] = _a[1];
+        }
+        children.forEach(function (child) { return gameField.appendChild(child); });
+    }
 }
 var selectedCards = [];
 function game() {
@@ -698,15 +708,16 @@ function game() {
         element.addEventListener("click", function () {
             var cardId = element.id;
             selectedCards.push(cardId);
-            console.log(cardId);
             //@ts-ignore
             element.src = cardId;
             if (selectedCards.length === 2) {
                 setTimeout(function () {
                     if (selectedCards[0] === selectedCards[1]) {
+                        clearInterval(timer);
                         victory();
                     }
                     else {
+                        clearInterval(timer);
                         losing();
                     }
                 }, 500);
@@ -714,21 +725,21 @@ function game() {
         });
     });
 }
+var timer;
+var time = document.querySelector(".header2__stopwatch_content");
 function stopWatch() {
-    var time = document.querySelector(".header2__stopwatch_content");
     var min = 0;
     var sec = 0;
-    var stopWatchTimer = setInterval(function () {
+    timer = setInterval(function () {
         if (time) {
             sec++;
             if (sec === 59) {
                 min++;
                 sec = 0;
             }
-            var timer = String("".concat(min, ":").concat(sec));
-            time.textContent = timer;
-            time.setAttribute("value", timer);
-            localStorage.setItem("valueTime", timer);
+            var timer_1 = String("0".concat(min, ": ").concat(sec));
+            time.textContent = timer_1;
+            time.setAttribute("value", timer_1);
         }
     }, 1000);
 }
@@ -751,11 +762,10 @@ function victory() {
     winTextTime.textContent = 'Затраченное время:';
     winTextTime.classList.add('win__text-time');
     winContent.appendChild(winTextTime);
-    // const timeSpent = document.createElement('h3');
-    // let timerWatch = localStorage.getItem('valueTime');
-    // timeSpent.textContent = timerWatch;
-    // timeSpent.classList.add('win__time-spent');
-    // winContent.appendChild(winTextTime);
+    var timeSpent = document.createElement('h3');
+    timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
+    timeSpent.classList.add('win__time-spent');
+    winContent.appendChild(timeSpent);
     var winButton = document.createElement('button');
     winButton.textContent = 'Играть снова';
     winButton.classList.add('win__button');
@@ -783,9 +793,10 @@ function losing() {
     winTextTime.textContent = 'Затраченное время:';
     winTextTime.classList.add('win__text-time');
     winContent.appendChild(winTextTime);
-    // const timeSpent = document.createElement('h3');
-    // timeSpent.classList.add('win__time-spent');
-    // winContent.appendChild(winTextTime);
+    var timeSpent = document.createElement('h3');
+    timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
+    timeSpent.classList.add('win__time-spent');
+    winContent.appendChild(timeSpent);
     var winButton = document.createElement('button');
     winButton.textContent = 'Играть снова';
     winButton.classList.add('win__button');
