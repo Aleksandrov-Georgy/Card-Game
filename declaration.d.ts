@@ -1,3 +1,9 @@
-declare module "*.jpg";
-declare module "*.jpeg";
-declare module "*.png";
+export {};
+
+
+
+declare global {
+  interface Window {
+    timer: ReturnType<typeof setInterval>,
+  }
+}

@@ -48,9 +48,9 @@ import winImage from "./img-cart/Image.png";
 import losingImg from "./img-cart/losing.png";
 
 const gameField: any = document.querySelector(".game-field");
-const head:any= document.querySelector(".header2");
+const head: any = document.querySelector(".header2");
 const selectedLevel = Number(localStorage.getItem("level"));
-const buttonStartAgain= document.querySelector(".header2__button");
+const buttonStartAgain = document.querySelector(".header2__button");
 const arrCardTest = [
   diamond6,
   clubs6,
@@ -91,15 +91,13 @@ const arrCardTest = [
 ];
 const randomArrCardTest = arrCardTest.sort(() => Math.random() - 0.5);
 
-buttonStartAgain?.addEventListener('click', () => {
-  window.location.href = './index.html';
-})
+buttonStartAgain?.addEventListener("click", () => {
+  window.location.href = "./index.html";
+});
 
 creationOfGameCards();
 stopWatch();
 game();
-
-
 
 function creationOfGameCards() {
   if (selectedLevel === 1) {
@@ -150,42 +148,42 @@ function creationOfGameCards() {
     children: string[];
   }
 
-  
   shuffleChildren(gameField);
 
-  function shuffleChildren(parent:Parent) {
+  function shuffleChildren(parent: Parent) {
     const children = Array.from(parent.children);
-    
+
     for (let i = children.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [children[i], children[j]] = [children[j], children[i]];
     }
-    
-    children.forEach(child => gameField.appendChild(child));
+
+    children.forEach((child) => gameField.appendChild(child));
   }
 }
+
 const selectedCards: any = [];
 
 function game() {
   const card = document.querySelectorAll(".cards").forEach((element) => {
     setTimeout(() => {
-        //@ts-ignore
+      //@ts-ignore
       element.src = shirt;
     }, 5000);
 
     element.addEventListener("click", () => {
       const cardId = element.id;
       selectedCards.push(cardId);
-        //@ts-ignore
+      //@ts-ignore
 
       element.src = cardId;
       if (selectedCards.length === 2) {
         setTimeout(() => {
           if (selectedCards[0] === selectedCards[1]) {
-            clearInterval(timer);
+            clearInterval(window.timer);
             victory();
-            } else {
-            clearInterval(timer);
+          } else {
+            clearInterval(window.timer);
             losing();
           }
         }, 500);
@@ -194,110 +192,104 @@ function game() {
   });
 }
 
-let timer:any;
 const time: HTMLElement | null = document.querySelector(
   ".header2__stopwatch_content"
 );
 
 function stopWatch() {
-  
-  
   let min: number = 0;
   let sec: number = 0;
 
-  timer = setInterval(() => {
+  window.timer = setInterval(() => {
     if (time) {
-      sec++;     
+      sec++;
       if (sec === 59) {
         min++;
         sec = 0;
       }
-      
 
       let timer: string = String(`0${min}: ${sec}`);
-      
+
       time.textContent = timer;
       time.setAttribute("value", timer);
     }
   }, 1000);
-
-  
 }
 
 function victory() {
-    const win = document.createElement('div');
-    win.classList.add('win');
-    head.appendChild(win)
+  const win = document.createElement("div");
+  win.classList.add("win");
+  head.appendChild(win);
 
-    const winContent = document.createElement('div');
-    winContent.classList.add('win__content');
-    head.appendChild(winContent);
+  const winContent = document.createElement("div");
+  winContent.classList.add("win__content");
+  head.appendChild(winContent);
 
-    const img = document.createElement('img');
-    img.src = winImage;
-    img.classList.add('win__image')
-    winContent.appendChild(img)
+  const img = document.createElement("img");
+  img.src = winImage;
+  img.classList.add("win__image");
+  winContent.appendChild(img);
 
-    const winText = document.createElement('h1');
-    winText.textContent = 'Вы выиграли!';
-    winText.classList.add('win__text');
-    winContent.appendChild(winText);
+  const winText = document.createElement("h1");
+  winText.textContent = "Вы выиграли!";
+  winText.classList.add("win__text");
+  winContent.appendChild(winText);
 
-    const winTextTime = document.createElement('p');
-    winTextTime.textContent = 'Затраченное время:';
-    winTextTime.classList.add('win__text-time');
-    winContent.appendChild(winTextTime);
+  const winTextTime = document.createElement("p");
+  winTextTime.textContent = "Затраченное время:";
+  winTextTime.classList.add("win__text-time");
+  winContent.appendChild(winTextTime);
 
-    const timeSpent:any = document.createElement('h3'); 
-    timeSpent.textContent = time?.attributes[1].value;
-    timeSpent.classList.add('win__time-spent');
-    winContent.appendChild(timeSpent);
+  const timeSpent: any = document.createElement("h3");
+  timeSpent.textContent = time?.attributes[1].value;
+  timeSpent.classList.add("win__time-spent");
+  winContent.appendChild(timeSpent);
 
-    const winButton = document.createElement('button');
-    winButton.textContent = 'Играть снова';
-    winButton.classList.add('win__button');
-    winContent.appendChild(winButton); 
+  const winButton = document.createElement("button");
+  winButton.textContent = "Играть снова";
+  winButton.classList.add("win__button");
+  winContent.appendChild(winButton);
 
-    winButton.addEventListener('click', () => {
-      window.location.href = 'index.html'
-    })
+  winButton.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
 }
 
 function losing() {
-  const win = document.createElement('div');
-  win.classList.add('win');
-  head.appendChild(win)
+  const win = document.createElement("div");
+  win.classList.add("win");
+  head.appendChild(win);
 
-  const winContent = document.createElement('div');
-  winContent.classList.add('win__content');
+  const winContent = document.createElement("div");
+  winContent.classList.add("win__content");
   head.appendChild(winContent);
 
-  const img = document.createElement('img');
+  const img = document.createElement("img");
   img.src = losingImg;
-  img.classList.add('win__image')
-  winContent.appendChild(img)
+  img.classList.add("win__image");
+  winContent.appendChild(img);
 
-  const winText = document.createElement('h1');
-  winText.textContent = 'Вы проиграли!';
-  winText.classList.add('win__text');
+  const winText = document.createElement("h1");
+  winText.textContent = "Вы проиграли!";
+  winText.classList.add("win__text");
   winContent.appendChild(winText);
 
-  const winTextTime = document.createElement('p');
-  winTextTime.textContent = 'Затраченное время:';
-  winTextTime.classList.add('win__text-time');
+  const winTextTime = document.createElement("p");
+  winTextTime.textContent = "Затраченное время:";
+  winTextTime.classList.add("win__text-time");
   winContent.appendChild(winTextTime);
 
-  const timeSpent:any = document.createElement('h3'); 
-    timeSpent.textContent = time?.attributes[1].value;
-    timeSpent.classList.add('win__time-spent');
-    winContent.appendChild(timeSpent);
+  const timeSpent: any = document.createElement("h3");
+  timeSpent.textContent = time?.attributes[1].value;
+  timeSpent.classList.add("win__time-spent");
+  winContent.appendChild(timeSpent);
 
-  const winButton = document.createElement('button');
-  winButton.textContent = 'Играть снова';
-  winButton.classList.add('win__button');
-  winContent.appendChild(winButton); 
+  const winButton = document.createElement("button");
+  winButton.textContent = "Играть снова";
+  winButton.classList.add("win__button");
+  winContent.appendChild(winButton);
 
-  winButton.addEventListener('click', () => {
-    window.location.href = 'index.html'
-  })
-} 
+  winButton.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
+}

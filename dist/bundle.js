@@ -485,24 +485,24 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./style.css");
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('level');
-    var formLevel = document.querySelector('.header__form__submit');
-    var buttonLevel = document.querySelectorAll('.button');
-    buttonLevel.forEach(function (element) {
-        element.addEventListener('click', function (event) {
+    const formLevel = document.querySelector('.header__form__submit');
+    const buttonLevel = document.querySelectorAll('.button');
+    buttonLevel.forEach(element => {
+        element.addEventListener('click', (event) => {
             event.stopPropagation();
             //@ts-ignore
             localStorage.setItem('level', element.value);
         });
     });
     //@ts-ignore    
-    formLevel.addEventListener('click', function () {
+    formLevel.addEventListener('click', () => {
         if (localStorage.getItem('level')) {
             window.location.href = '2.html';
         }
         else {
-            buttonLevel.forEach(function (element) {
+            buttonLevel.forEach(element => {
                 element.classList.add('error');
             });
         }
@@ -595,11 +595,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var gameField = document.querySelector(".game-field");
-var head = document.querySelector(".header2");
-var selectedLevel = Number(localStorage.getItem("level"));
-var buttonStartAgain = document.querySelector(".header2__button");
-var arrCardTest = [
+const gameField = document.querySelector(".game-field");
+const head = document.querySelector(".header2");
+const selectedLevel = Number(localStorage.getItem("level"));
+const buttonStartAgain = document.querySelector(".header2__button");
+const arrCardTest = [
     _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_0__,
     _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_1__,
     _img_cart_cart_6_png__WEBPACK_IMPORTED_MODULE_2__,
@@ -637,8 +637,8 @@ var arrCardTest = [
     _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_34__,
     _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_35__,
 ];
-var randomArrCardTest = arrCardTest.sort(function () { return Math.random() - 0.5; });
-buttonStartAgain === null || buttonStartAgain === void 0 ? void 0 : buttonStartAgain.addEventListener('click', function () {
+const randomArrCardTest = arrCardTest.sort(() => Math.random() - 0.5);
+buttonStartAgain === null || buttonStartAgain === void 0 ? void 0 : buttonStartAgain.addEventListener('click', () => {
     window.location.href = './index.html';
 });
 creationOfGameCards();
@@ -646,13 +646,13 @@ stopWatch();
 game();
 function creationOfGameCards() {
     if (selectedLevel === 1) {
-        for (var i = 0; i < 3; i++) {
-            var img = document.createElement("img");
+        for (let i = 0; i < 3; i++) {
+            const img = document.createElement("img");
             img.classList.add("cards");
             img.setAttribute("id", randomArrCardTest[i]);
             img.src = randomArrCardTest[i];
             gameField.appendChild(img);
-            var img2 = document.createElement("img");
+            const img2 = document.createElement("img");
             img2.classList.add("cards");
             img2.setAttribute("id", randomArrCardTest[i]);
             img2.src = randomArrCardTest[i];
@@ -660,13 +660,13 @@ function creationOfGameCards() {
         }
     }
     else if (selectedLevel === 2) {
-        for (var i = 0; i < 6; i++) {
-            var img = document.createElement("img");
+        for (let i = 0; i < 6; i++) {
+            const img = document.createElement("img");
             img.classList.add("cards");
             img.setAttribute("id", randomArrCardTest[i]);
             img.src = randomArrCardTest[i];
             gameField.appendChild(img);
-            var img2 = document.createElement("img");
+            const img2 = document.createElement("img");
             img2.classList.add("cards");
             img2.setAttribute("id", randomArrCardTest[i]);
             img2.src = randomArrCardTest[i];
@@ -674,13 +674,13 @@ function creationOfGameCards() {
         }
     }
     else if (selectedLevel === 3) {
-        for (var i = 0; i < 9; i++) {
-            var img = document.createElement("img");
+        for (let i = 0; i < 9; i++) {
+            const img = document.createElement("img");
             img.classList.add("cards");
             img.setAttribute("id", randomArrCardTest[i]);
             img.src = randomArrCardTest[i];
             gameField.appendChild(img);
-            var img2 = document.createElement("img");
+            const img2 = document.createElement("img");
             img2.classList.add("cards");
             img2.setAttribute("id", randomArrCardTest[i]);
             img2.src = randomArrCardTest[i];
@@ -689,35 +689,34 @@ function creationOfGameCards() {
     }
     shuffleChildren(gameField);
     function shuffleChildren(parent) {
-        var _a;
-        var children = Array.from(parent.children);
-        for (var i = children.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            _a = [children[j], children[i]], children[i] = _a[0], children[j] = _a[1];
+        const children = Array.from(parent.children);
+        for (let i = children.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [children[i], children[j]] = [children[j], children[i]];
         }
-        children.forEach(function (child) { return gameField.appendChild(child); });
+        children.forEach(child => gameField.appendChild(child));
     }
 }
-var selectedCards = [];
+const selectedCards = [];
 function game() {
-    var card = document.querySelectorAll(".cards").forEach(function (element) {
-        setTimeout(function () {
+    const card = document.querySelectorAll(".cards").forEach((element) => {
+        setTimeout(() => {
             //@ts-ignore
             element.src = _img_cart_png__WEBPACK_IMPORTED_MODULE_36__;
         }, 5000);
-        element.addEventListener("click", function () {
-            var cardId = element.id;
+        element.addEventListener("click", () => {
+            const cardId = element.id;
             selectedCards.push(cardId);
             //@ts-ignore
             element.src = cardId;
             if (selectedCards.length === 2) {
-                setTimeout(function () {
+                setTimeout(() => {
                     if (selectedCards[0] === selectedCards[1]) {
-                        clearInterval(timer);
+                        clearInterval(window.timer);
                         victory();
                     }
                     else {
-                        clearInterval(timer);
+                        clearInterval(window.timer);
                         losing();
                     }
                 }, 500);
@@ -725,83 +724,83 @@ function game() {
         });
     });
 }
-var timer;
-var time = document.querySelector(".header2__stopwatch_content");
+// let timer:any;
+const time = document.querySelector(".header2__stopwatch_content");
 function stopWatch() {
-    var min = 0;
-    var sec = 0;
-    timer = setInterval(function () {
+    let min = 0;
+    let sec = 0;
+    window.timer = setInterval(() => {
         if (time) {
             sec++;
             if (sec === 59) {
                 min++;
                 sec = 0;
             }
-            var timer_1 = String("0".concat(min, ": ").concat(sec));
-            time.textContent = timer_1;
-            time.setAttribute("value", timer_1);
+            let timer = String(`0${min}: ${sec}`);
+            time.textContent = timer;
+            time.setAttribute("value", timer);
         }
     }, 1000);
 }
 function victory() {
-    var win = document.createElement('div');
+    const win = document.createElement('div');
     win.classList.add('win');
     head.appendChild(win);
-    var winContent = document.createElement('div');
+    const winContent = document.createElement('div');
     winContent.classList.add('win__content');
     head.appendChild(winContent);
-    var img = document.createElement('img');
+    const img = document.createElement('img');
     img.src = _img_cart_Image_png__WEBPACK_IMPORTED_MODULE_37__;
     img.classList.add('win__image');
     winContent.appendChild(img);
-    var winText = document.createElement('h1');
+    const winText = document.createElement('h1');
     winText.textContent = 'Вы выиграли!';
     winText.classList.add('win__text');
     winContent.appendChild(winText);
-    var winTextTime = document.createElement('p');
+    const winTextTime = document.createElement('p');
     winTextTime.textContent = 'Затраченное время:';
     winTextTime.classList.add('win__text-time');
     winContent.appendChild(winTextTime);
-    var timeSpent = document.createElement('h3');
+    const timeSpent = document.createElement('h3');
     timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
     timeSpent.classList.add('win__time-spent');
     winContent.appendChild(timeSpent);
-    var winButton = document.createElement('button');
+    const winButton = document.createElement('button');
     winButton.textContent = 'Играть снова';
     winButton.classList.add('win__button');
     winContent.appendChild(winButton);
-    winButton.addEventListener('click', function () {
+    winButton.addEventListener('click', () => {
         window.location.href = 'index.html';
     });
 }
 function losing() {
-    var win = document.createElement('div');
+    const win = document.createElement('div');
     win.classList.add('win');
     head.appendChild(win);
-    var winContent = document.createElement('div');
+    const winContent = document.createElement('div');
     winContent.classList.add('win__content');
     head.appendChild(winContent);
-    var img = document.createElement('img');
+    const img = document.createElement('img');
     img.src = _img_cart_losing_png__WEBPACK_IMPORTED_MODULE_38__;
     img.classList.add('win__image');
     winContent.appendChild(img);
-    var winText = document.createElement('h1');
+    const winText = document.createElement('h1');
     winText.textContent = 'Вы проиграли!';
     winText.classList.add('win__text');
     winContent.appendChild(winText);
-    var winTextTime = document.createElement('p');
+    const winTextTime = document.createElement('p');
     winTextTime.textContent = 'Затраченное время:';
     winTextTime.classList.add('win__text-time');
     winContent.appendChild(winTextTime);
-    var timeSpent = document.createElement('h3');
+    const timeSpent = document.createElement('h3');
     timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
     timeSpent.classList.add('win__time-spent');
     winContent.appendChild(timeSpent);
-    var winButton = document.createElement('button');
+    const winButton = document.createElement('button');
     winButton.textContent = 'Играть снова';
     winButton.classList.add('win__button');
     winContent.appendChild(winButton);
-    winButton.addEventListener('click', function () {
+    winButton.addEventListener('click', () => {
         window.location.href = 'index.html';
     });
 }
