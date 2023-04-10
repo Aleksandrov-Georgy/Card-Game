@@ -638,8 +638,8 @@ const arrCardTest = [
     _img_cart_cart_png__WEBPACK_IMPORTED_MODULE_35__,
 ];
 const randomArrCardTest = arrCardTest.sort(() => Math.random() - 0.5);
-buttonStartAgain === null || buttonStartAgain === void 0 ? void 0 : buttonStartAgain.addEventListener('click', () => {
-    window.location.href = './index.html';
+buttonStartAgain === null || buttonStartAgain === void 0 ? void 0 : buttonStartAgain.addEventListener("click", () => {
+    window.location.href = "./index.html";
 });
 creationOfGameCards();
 stopWatch();
@@ -687,6 +687,7 @@ function creationOfGameCards() {
             gameField.appendChild(img2);
         }
     }
+    //@ts-ignore
     shuffleChildren(gameField);
     function shuffleChildren(parent) {
         const children = Array.from(parent.children);
@@ -694,7 +695,8 @@ function creationOfGameCards() {
             const j = Math.floor(Math.random() * (i + 1));
             [children[i], children[j]] = [children[j], children[i]];
         }
-        children.forEach(child => gameField.appendChild(child));
+        //@ts-ignore
+        children.forEach((children) => gameField.appendChild(child));
     }
 }
 const selectedCards = [];
@@ -724,7 +726,6 @@ function game() {
         });
     });
 }
-// let timer:any;
 const time = document.querySelector(".header2__stopwatch_content");
 function stopWatch() {
     let min = 0;
@@ -743,65 +744,67 @@ function stopWatch() {
     }, 1000);
 }
 function victory() {
-    const win = document.createElement('div');
-    win.classList.add('win');
+    const win = document.createElement("div");
+    win.classList.add("win");
     head.appendChild(win);
-    const winContent = document.createElement('div');
-    winContent.classList.add('win__content');
+    const winContent = document.createElement("div");
+    winContent.classList.add("win__content");
     head.appendChild(winContent);
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = _img_cart_Image_png__WEBPACK_IMPORTED_MODULE_37__;
-    img.classList.add('win__image');
+    img.classList.add("win__image");
     winContent.appendChild(img);
-    const winText = document.createElement('h1');
-    winText.textContent = 'Вы выиграли!';
-    winText.classList.add('win__text');
+    const winText = document.createElement("h1");
+    winText.textContent = "Вы выиграли!";
+    winText.classList.add("win__text");
     winContent.appendChild(winText);
-    const winTextTime = document.createElement('p');
-    winTextTime.textContent = 'Затраченное время:';
-    winTextTime.classList.add('win__text-time');
+    const winTextTime = document.createElement("p");
+    winTextTime.textContent = "Затраченное время:";
+    winTextTime.classList.add("win__text-time");
     winContent.appendChild(winTextTime);
-    const timeSpent = document.createElement('h3');
+    const timeSpent = document.createElement("h3");
+    //@ts-ignore
     timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
-    timeSpent.classList.add('win__time-spent');
+    timeSpent.classList.add("win__time-spent");
     winContent.appendChild(timeSpent);
-    const winButton = document.createElement('button');
-    winButton.textContent = 'Играть снова';
-    winButton.classList.add('win__button');
+    const winButton = document.createElement("button");
+    winButton.textContent = "Играть снова";
+    winButton.classList.add("win__button");
     winContent.appendChild(winButton);
-    winButton.addEventListener('click', () => {
-        window.location.href = 'index.html';
+    winButton.addEventListener("click", () => {
+        window.location.href = "index.html";
     });
 }
 function losing() {
-    const win = document.createElement('div');
-    win.classList.add('win');
+    const win = document.createElement("div");
+    win.classList.add("win");
     head.appendChild(win);
-    const winContent = document.createElement('div');
-    winContent.classList.add('win__content');
+    const winContent = document.createElement("div");
+    winContent.classList.add("win__content");
     head.appendChild(winContent);
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = _img_cart_losing_png__WEBPACK_IMPORTED_MODULE_38__;
-    img.classList.add('win__image');
+    img.classList.add("win__image");
     winContent.appendChild(img);
-    const winText = document.createElement('h1');
-    winText.textContent = 'Вы проиграли!';
-    winText.classList.add('win__text');
+    const winText = document.createElement("h1");
+    winText.textContent = "Вы проиграли!";
+    winText.classList.add("win__text");
     winContent.appendChild(winText);
-    const winTextTime = document.createElement('p');
-    winTextTime.textContent = 'Затраченное время:';
-    winTextTime.classList.add('win__text-time');
+    const winTextTime = document.createElement("p");
+    winTextTime.textContent = "Затраченное время:";
+    winTextTime.classList.add("win__text-time");
     winContent.appendChild(winTextTime);
-    const timeSpent = document.createElement('h3');
+    const timeSpent = document.createElement("h3");
+    //@ts-ignore
     timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
-    timeSpent.classList.add('win__time-spent');
+    timeSpent.classList.add("win__time-spent");
     winContent.appendChild(timeSpent);
-    const winButton = document.createElement('button');
-    winButton.textContent = 'Играть снова';
-    winButton.classList.add('win__button');
+    const winButton = document.createElement("button");
+    winButton.textContent = "Играть снова";
+    winButton.classList.add("win__button");
     winContent.appendChild(winButton);
-    winButton.addEventListener('click', () => {
-        window.location.href = 'index.html';
+    winButton.addEventListener("click", () => {
+        window.location.href = "index.html";
     });
 }
 

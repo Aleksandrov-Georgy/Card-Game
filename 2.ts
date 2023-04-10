@@ -46,9 +46,10 @@ import heartsT from "./img-cart/cart/туз черви.png";
 import shirt from "./img-cart/рубашка.png";
 import winImage from "./img-cart/Image.png";
 import losingImg from "./img-cart/losing.png";
+import { functions } from "lodash";
 
-const gameField: any = document.querySelector(".game-field");
-const head: any = document.querySelector(".header2");
+const gameField = document.querySelector(".game-field") as HTMLElement;
+const head = document.querySelector(".header2") as HTMLElement;
 const selectedLevel = Number(localStorage.getItem("level"));
 const buttonStartAgain = document.querySelector(".header2__button");
 const arrCardTest = [
@@ -144,25 +145,23 @@ function creationOfGameCards() {
     }
   }
 
-  interface Parent {
-    children: string[];
-  }
+//   interface Parent {
+//     children: string[];
+//   }
+//   shuffleChildren(gameField);
 
-  shuffleChildren(gameField);
+//   function shuffleChildren(parent: Parent) {
+//     const children = Array.from(parent.children);
 
-  function shuffleChildren(parent: Parent) {
-    const children = Array.from(parent.children);
+//     for (let i = children.length - 1; i > 0; i--) {
+//       const j = Math.floor(Math.random() * (i + 1));
+//       [children[i], children[j]] = [children[j], children[i]];
+//     }
+//     children.forEach((child) => parent.appendChild(child));
+//   }
 
-    for (let i = children.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [children[i], children[j]] = [children[j], children[i]];
-    }
-
-    children.forEach((child) => gameField.appendChild(child));
-  }
 }
-
-const selectedCards: any = [];
+const selectedCards: string[] = [];
 
 function game() {
   const card = document.querySelectorAll(".cards").forEach((element) => {
@@ -240,7 +239,8 @@ function victory() {
   winTextTime.classList.add("win__text-time");
   winContent.appendChild(winTextTime);
 
-  const timeSpent: any = document.createElement("h3");
+  const timeSpent: HTMLHeadElement = document.createElement("h3");
+  //@ts-ignore
   timeSpent.textContent = time?.attributes[1].value;
   timeSpent.classList.add("win__time-spent");
   winContent.appendChild(timeSpent);
@@ -279,7 +279,8 @@ function losing() {
   winTextTime.classList.add("win__text-time");
   winContent.appendChild(winTextTime);
 
-  const timeSpent: any = document.createElement("h3");
+  const timeSpent: HTMLHeadElement = document.createElement("h3");
+  //@ts-ignore
   timeSpent.textContent = time?.attributes[1].value;
   timeSpent.classList.add("win__time-spent");
   winContent.appendChild(timeSpent);
