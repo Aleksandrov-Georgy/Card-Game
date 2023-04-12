@@ -47,6 +47,7 @@ import shirt from "./img-cart/рубашка.png";
 import winImage from "./img-cart/Image.png";
 import losingImg from "./img-cart/losing.png";
 import { functions } from "lodash";
+import { Module, node } from "webpack";
 
 const gameField = document.querySelector(".game-field") as HTMLElement;
 const head = document.querySelector(".header2") as HTMLElement;
@@ -103,13 +104,13 @@ game();
 function creationOfGameCards() {
   if (selectedLevel === 1) {
     for (let i = 0; i < 3; i++) {
-      const img = document.createElement("img");
+      const img:HTMLImageElement = document.createElement("img");
       img.classList.add("cards");
       img.setAttribute("id", randomArrCardTest[i]);
       img.src = randomArrCardTest[i];
       gameField.appendChild(img);
 
-      const img2 = document.createElement("img");
+      const img2:HTMLImageElement = document.createElement("img");
       img2.classList.add("cards");
       img2.setAttribute("id", randomArrCardTest[i]);
       img2.src = randomArrCardTest[i];
@@ -117,13 +118,13 @@ function creationOfGameCards() {
     }
   } else if (selectedLevel === 2) {
     for (let i = 0; i < 6; i++) {
-      const img = document.createElement("img");
+      const img:HTMLImageElement = document.createElement("img");
       img.classList.add("cards");
       img.setAttribute("id", randomArrCardTest[i]);
       img.src = randomArrCardTest[i];
       gameField.appendChild(img);
 
-      const img2 = document.createElement("img");
+      const img2:HTMLImageElement = document.createElement("img");
       img2.classList.add("cards");
       img2.setAttribute("id", randomArrCardTest[i]);
       img2.src = randomArrCardTest[i];
@@ -131,13 +132,13 @@ function creationOfGameCards() {
     }
   } else if (selectedLevel === 3) {
     for (let i = 0; i < 9; i++) {
-      const img = document.createElement("img");
+      const img:HTMLImageElement = document.createElement("img");
       img.classList.add("cards");
       img.setAttribute("id", randomArrCardTest[i]);
       img.src = randomArrCardTest[i];
       gameField.appendChild(img);
 
-      const img2 = document.createElement("img");
+      const img2:HTMLImageElement = document.createElement("img");
       img2.classList.add("cards");
       img2.setAttribute("id", randomArrCardTest[i]);
       img2.src = randomArrCardTest[i];
@@ -145,36 +146,37 @@ function creationOfGameCards() {
     }
   }
 
-//   interface Parent {
-//     children: string[];
-//   }
-//   shuffleChildren(gameField);
+  interface Parent {
+    children: string[];
+  }
 
-//   function shuffleChildren(parent: Parent) {
-//     const children = Array.from(parent.children);
+  shuffleChildren(gameField);
 
-//     for (let i = children.length - 1; i > 0; i--) {
-//       const j = Math.floor(Math.random() * (i + 1));
-//       [children[i], children[j]] = [children[j], children[i]];
-//     }
-//     children.forEach((child) => parent.appendChild(child));
-//   }
+  function shuffleChildren(parent: HTMLElement) {
+    const children = Array.from(parent.children);
+
+    for (let i = children.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [children[i], children[j]] = [children[j], children[i]];
+    }
+    children.forEach((child) => parent.appendChild(child));
+  }
 
 }
 const selectedCards: string[] = [];
 
 function game() {
-  const card = document.querySelectorAll(".cards").forEach((element) => {
+  const cards = document.documentElement.querySelectorAll(".cards") as NodeListOf<HTMLImageElement>; 
+  cards.forEach((element) => {
     setTimeout(() => {
-      //@ts-ignore
-      element.src = shirt;
+           
+      element.src =  shirt;
     }, 5000);
 
     element.addEventListener("click", () => {
       const cardId = element.id;
       selectedCards.push(cardId);
-      //@ts-ignore
-
+      
       element.src = cardId;
       if (selectedCards.length === 2) {
         setTimeout(() => {
@@ -239,9 +241,9 @@ function victory() {
   winTextTime.classList.add("win__text-time");
   winContent.appendChild(winTextTime);
 
-  const timeSpent: HTMLHeadElement = document.createElement("h3");
-  //@ts-ignore
-  timeSpent.textContent = time?.attributes[1].value;
+  const timeSpent: HTMLElement = document.createElement("h3");
+
+  timeSpent.textContent = time?.attributes[1].value ?? null;
   timeSpent.classList.add("win__time-spent");
   winContent.appendChild(timeSpent);
 
@@ -280,8 +282,8 @@ function losing() {
   winContent.appendChild(winTextTime);
 
   const timeSpent: HTMLHeadElement = document.createElement("h3");
-  //@ts-ignore
-  timeSpent.textContent = time?.attributes[1].value;
+  
+  timeSpent.textContent = time?.attributes[1].value ?? null;
   timeSpent.classList.add("win__time-spent");
   winContent.appendChild(timeSpent);
 

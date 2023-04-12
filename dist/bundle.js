@@ -687,7 +687,6 @@ function creationOfGameCards() {
             gameField.appendChild(img2);
         }
     }
-    //@ts-ignore
     shuffleChildren(gameField);
     function shuffleChildren(parent) {
         const children = Array.from(parent.children);
@@ -695,21 +694,19 @@ function creationOfGameCards() {
             const j = Math.floor(Math.random() * (i + 1));
             [children[i], children[j]] = [children[j], children[i]];
         }
-        //@ts-ignore
-        children.forEach((children) => gameField.appendChild(child));
+        children.forEach((child) => parent.appendChild(child));
     }
 }
 const selectedCards = [];
 function game() {
-    const card = document.querySelectorAll(".cards").forEach((element) => {
+    const cards = document.documentElement.querySelectorAll(".cards");
+    cards.forEach((element) => {
         setTimeout(() => {
-            //@ts-ignore
             element.src = _img_cart_png__WEBPACK_IMPORTED_MODULE_36__;
         }, 5000);
         element.addEventListener("click", () => {
             const cardId = element.id;
             selectedCards.push(cardId);
-            //@ts-ignore
             element.src = cardId;
             if (selectedCards.length === 2) {
                 setTimeout(() => {
@@ -744,6 +741,7 @@ function stopWatch() {
     }, 1000);
 }
 function victory() {
+    var _a;
     const win = document.createElement("div");
     win.classList.add("win");
     head.appendChild(win);
@@ -763,8 +761,7 @@ function victory() {
     winTextTime.classList.add("win__text-time");
     winContent.appendChild(winTextTime);
     const timeSpent = document.createElement("h3");
-    //@ts-ignore
-    timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
+    timeSpent.textContent = (_a = time === null || time === void 0 ? void 0 : time.attributes[1].value) !== null && _a !== void 0 ? _a : null;
     timeSpent.classList.add("win__time-spent");
     winContent.appendChild(timeSpent);
     const winButton = document.createElement("button");
@@ -776,6 +773,7 @@ function victory() {
     });
 }
 function losing() {
+    var _a;
     const win = document.createElement("div");
     win.classList.add("win");
     head.appendChild(win);
@@ -795,8 +793,7 @@ function losing() {
     winTextTime.classList.add("win__text-time");
     winContent.appendChild(winTextTime);
     const timeSpent = document.createElement("h3");
-    //@ts-ignore
-    timeSpent.textContent = time === null || time === void 0 ? void 0 : time.attributes[1].value;
+    timeSpent.textContent = (_a = time === null || time === void 0 ? void 0 : time.attributes[1].value) !== null && _a !== void 0 ? _a : null;
     timeSpent.classList.add("win__time-spent");
     winContent.appendChild(timeSpent);
     const winButton = document.createElement("button");
