@@ -492,12 +492,10 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonLevel.forEach(element => {
         element.addEventListener('click', (event) => {
             event.stopPropagation();
-            //@ts-ignore
             localStorage.setItem('level', element.value);
         });
     });
-    //@ts-ignore    
-    formLevel.addEventListener('click', () => {
+    formLevel === null || formLevel === void 0 ? void 0 : formLevel.addEventListener('click', () => {
         if (localStorage.getItem('level')) {
             window.location.href = '2.html';
         }
@@ -657,6 +655,7 @@ function creationOfGameCards() {
             img2.setAttribute("id", randomArrCardTest[i]);
             img2.src = randomArrCardTest[i];
             gameField.appendChild(img2);
+            shuffleChildren(gameField);
         }
     }
     else if (selectedLevel === 2) {
@@ -671,6 +670,7 @@ function creationOfGameCards() {
             img2.setAttribute("id", randomArrCardTest[i]);
             img2.src = randomArrCardTest[i];
             gameField.appendChild(img2);
+            shuffleChildren(gameField);
         }
     }
     else if (selectedLevel === 3) {
@@ -685,9 +685,9 @@ function creationOfGameCards() {
             img2.setAttribute("id", randomArrCardTest[i]);
             img2.src = randomArrCardTest[i];
             gameField.appendChild(img2);
+            shuffleChildren(gameField);
         }
     }
-    shuffleChildren(gameField);
     function shuffleChildren(parent) {
         const children = Array.from(parent.children);
         for (let i = children.length - 1; i > 0; i--) {
@@ -703,24 +703,37 @@ function game() {
     cards.forEach((element) => {
         setTimeout(() => {
             element.src = _img_cart_png__WEBPACK_IMPORTED_MODULE_36__;
+            clickCards();
         }, 5000);
-        element.addEventListener("click", () => {
-            const cardId = element.id;
-            selectedCards.push(cardId);
-            element.src = cardId;
-            if (selectedCards.length === 2) {
-                setTimeout(() => {
-                    if (selectedCards[0] === selectedCards[1]) {
-                        clearInterval(window.timer);
-                        victory();
-                    }
-                    else {
-                        clearInterval(window.timer);
-                        losing();
-                    }
-                }, 500);
-            }
-        });
+        function clickCards() {
+            element.addEventListener("click", () => {
+                const cardId = element.id;
+                selectedCards.push(cardId);
+                element.src = cardId;
+                if (selectedCards.length % 2 === 0) {
+                    setTimeout(() => {
+                        if (selectedCards[0] === selectedCards[1] &&
+                            selectedCards[2] === selectedCards[3] &&
+                            selectedCards[4] === selectedCards[5] &&
+                            selectedCards[6] === selectedCards[7] &&
+                            selectedCards[8] === selectedCards[9] &&
+                            selectedCards[10] === selectedCards[11] &&
+                            selectedCards[12] === selectedCards[13] &&
+                            selectedCards[14] === selectedCards[15] &&
+                            selectedCards[16] === selectedCards[17]) {
+                            if (selectedCards[cards.length - 1]) {
+                                clearInterval(window.timer);
+                                victory();
+                            }
+                        }
+                        else {
+                            clearInterval(window.timer);
+                            losing();
+                        }
+                    }, 200);
+                }
+            });
+        }
     });
 }
 const time = document.querySelector(".header2__stopwatch_content");

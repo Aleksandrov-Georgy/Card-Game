@@ -6,18 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('level');
 
     const formLevel = document.querySelector('.header__form__submit');
-    const buttonLevel = document.querySelectorAll('.button');
+    const buttonLevel = document.querySelectorAll('.button') as NodeListOf<HTMLButtonElement>;
     
     
     buttonLevel.forEach(element => {
         element.addEventListener('click', (event) => {
             event.stopPropagation();
-            //@ts-ignore
             localStorage.setItem('level', element.value);
         })        
     });
-    //@ts-ignore    
-    formLevel.addEventListener('click', () => {
+
+
+    formLevel?.addEventListener('click', () => {
         if(localStorage.getItem('level')) {
             window.location.href = '2.html';
         } else {

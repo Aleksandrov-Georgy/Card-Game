@@ -2,15 +2,19 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "start": "webpack-dev-server --open",
-    "lint:ts": "tsc ––noEmit"
+    "lint:ts": "tsc ––noEmit",
+    "test": "jest"
   },
   "devDependencies": {
+    "@testing-library/dom": "^9.2.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@types/lodash": "^4.14.192",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.5.0",
     "mini-css-extract-plugin": "^2.7.5",
     "sass": "^1.60.0",
     "sass-loader": "^13.2.1",
@@ -23,5 +27,8 @@
   },
   "dependencies": {
     "save-dev": "^0.0.1-security"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
   }
 }

@@ -46,7 +46,7 @@ import heartsT from "./img-cart/cart/туз черви.png";
 import shirt from "./img-cart/рубашка.png";
 import winImage from "./img-cart/Image.png";
 import losingImg from "./img-cart/losing.png";
-import { functions } from "lodash";
+import { functions, indexOf, last } from "lodash";
 import { Module, node } from "webpack";
 
 const gameField = document.querySelector(".game-field") as HTMLElement;
@@ -104,53 +104,53 @@ game();
 function creationOfGameCards() {
   if (selectedLevel === 1) {
     for (let i = 0; i < 3; i++) {
-      const img:HTMLImageElement = document.createElement("img");
+      const img: HTMLImageElement = document.createElement("img");
       img.classList.add("cards");
       img.setAttribute("id", randomArrCardTest[i]);
       img.src = randomArrCardTest[i];
       gameField.appendChild(img);
 
-      const img2:HTMLImageElement = document.createElement("img");
+      const img2: HTMLImageElement = document.createElement("img");
       img2.classList.add("cards");
       img2.setAttribute("id", randomArrCardTest[i]);
       img2.src = randomArrCardTest[i];
       gameField.appendChild(img2);
+
+      shuffleChildren(gameField);
     }
   } else if (selectedLevel === 2) {
     for (let i = 0; i < 6; i++) {
-      const img:HTMLImageElement = document.createElement("img");
+      const img: HTMLImageElement = document.createElement("img");
       img.classList.add("cards");
       img.setAttribute("id", randomArrCardTest[i]);
       img.src = randomArrCardTest[i];
       gameField.appendChild(img);
 
-      const img2:HTMLImageElement = document.createElement("img");
+      const img2: HTMLImageElement = document.createElement("img");
       img2.classList.add("cards");
       img2.setAttribute("id", randomArrCardTest[i]);
       img2.src = randomArrCardTest[i];
       gameField.appendChild(img2);
+
+      shuffleChildren(gameField);
     }
   } else if (selectedLevel === 3) {
     for (let i = 0; i < 9; i++) {
-      const img:HTMLImageElement = document.createElement("img");
+      const img: HTMLImageElement = document.createElement("img");
       img.classList.add("cards");
       img.setAttribute("id", randomArrCardTest[i]);
       img.src = randomArrCardTest[i];
       gameField.appendChild(img);
 
-      const img2:HTMLImageElement = document.createElement("img");
+      const img2: HTMLImageElement = document.createElement("img");
       img2.classList.add("cards");
       img2.setAttribute("id", randomArrCardTest[i]);
       img2.src = randomArrCardTest[i];
       gameField.appendChild(img2);
+
+      shuffleChildren(gameField);
     }
   }
-
-  interface Parent {
-    children: string[];
-  }
-
-  shuffleChildren(gameField);
 
   function shuffleChildren(parent: HTMLElement) {
     const children = Array.from(parent.children);
@@ -161,35 +161,52 @@ function creationOfGameCards() {
     }
     children.forEach((child) => parent.appendChild(child));
   }
-
 }
+
 const selectedCards: string[] = [];
 
 function game() {
-  const cards = document.documentElement.querySelectorAll(".cards") as NodeListOf<HTMLImageElement>; 
+  const cards = document.documentElement.querySelectorAll(
+    ".cards"
+  ) as NodeListOf<HTMLImageElement>;
+
   cards.forEach((element) => {
     setTimeout(() => {
-           
-      element.src =  shirt;
+      element.src = shirt;
+      clickCards();
     }, 5000);
 
-    element.addEventListener("click", () => {
-      const cardId = element.id;
-      selectedCards.push(cardId);
-      
-      element.src = cardId;
-      if (selectedCards.length === 2) {
-        setTimeout(() => {
-          if (selectedCards[0] === selectedCards[1]) {
-            clearInterval(window.timer);
-            victory();
-          } else {
-            clearInterval(window.timer);
-            losing();
-          }
-        }, 500);
-      }
-    });
+    function clickCards() {
+      element.addEventListener("click", () => {
+        const cardId = element.id;
+        selectedCards.push(cardId);
+        element.src = cardId;
+  
+        if (selectedCards.length % 2 === 0) {
+          setTimeout(() => {
+            if (
+              selectedCards[0] === selectedCards[1] &&
+              selectedCards[2] === selectedCards[3] &&
+              selectedCards[4] === selectedCards[5] &&
+              selectedCards[6] === selectedCards[7] &&
+              selectedCards[8] === selectedCards[9] &&
+              selectedCards[10] === selectedCards[11] &&
+              selectedCards[12] === selectedCards[13] &&
+              selectedCards[14] === selectedCards[15] &&
+              selectedCards[16] === selectedCards[17]
+            ) {
+              if (selectedCards[cards.length - 1]) {
+                clearInterval(window.timer);
+                victory();
+              }
+            } else {
+              clearInterval(window.timer);
+              losing();
+            }
+          }, 200);
+        }
+      });
+    } 
   });
 }
 
@@ -282,7 +299,7 @@ function losing() {
   winContent.appendChild(winTextTime);
 
   const timeSpent: HTMLHeadElement = document.createElement("h3");
-  
+
   timeSpent.textContent = time?.attributes[1].value ?? null;
   timeSpent.classList.add("win__time-spent");
   winContent.appendChild(timeSpent);
