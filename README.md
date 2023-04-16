@@ -1,4 +1,5 @@
-# README.md 
+# README.md
+
 Card game
 The initial screen, the choice of difficulty level.
 The higher the level, the more cards.

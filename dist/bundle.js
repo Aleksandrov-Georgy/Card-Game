@@ -485,23 +485,23 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./style.css");
 
-document.addEventListener('DOMContentLoaded', () => {
-    localStorage.removeItem('level');
-    const formLevel = document.querySelector('.header__form__submit');
-    const buttonLevel = document.querySelectorAll('.button');
-    buttonLevel.forEach(element => {
-        element.addEventListener('click', (event) => {
+document.addEventListener("DOMContentLoaded", () => {
+    localStorage.removeItem("level");
+    const formLevel = document.querySelector(".header__form__submit");
+    const buttonLevel = document.querySelectorAll(".button");
+    buttonLevel.forEach((element) => {
+        element.addEventListener("click", (event) => {
             event.stopPropagation();
-            localStorage.setItem('level', element.value);
+            localStorage.setItem("level", element.value);
         });
     });
-    formLevel === null || formLevel === void 0 ? void 0 : formLevel.addEventListener('click', () => {
-        if (localStorage.getItem('level')) {
-            window.location.href = '2.html';
+    formLevel === null || formLevel === void 0 ? void 0 : formLevel.addEventListener("click", () => {
+        if (localStorage.getItem("level")) {
+            window.location.href = "2.html";
         }
         else {
-            buttonLevel.forEach(element => {
-                element.classList.add('error');
+            buttonLevel.forEach((element) => {
+                element.classList.add("error");
             });
         }
     });
@@ -737,6 +737,22 @@ function game() {
     });
 }
 const time = document.querySelector(".header2__stopwatch_content");
+// function stopWatch() {
+//   let min: number = 0;
+//   let sec: number = 0;
+//   window.timer = setInterval(() => {
+//     if (time) {
+//       sec++;
+//       if (sec === 59) {
+//         min++;
+//         sec = 0;
+//       }
+//       let timer: string = String(`0${min}: ${sec}`);
+//       time.textContent = timer;
+//       time.setAttribute("value", timer);
+//     }
+//   }, 1000);
+// }
 function stopWatch() {
     let min = 0;
     let sec = 0;
@@ -747,7 +763,7 @@ function stopWatch() {
                 min++;
                 sec = 0;
             }
-            let timer = String(`0${min}: ${sec}`);
+            const timer = `0${min}:${sec < 10 ? 0 : ""}${sec}`;
             time.textContent = timer;
             time.setAttribute("value", timer);
         }

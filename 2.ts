@@ -46,8 +46,6 @@ import heartsT from "./img-cart/cart/туз черви.png";
 import shirt from "./img-cart/рубашка.png";
 import winImage from "./img-cart/Image.png";
 import losingImg from "./img-cart/losing.png";
-import { functions, indexOf, last } from "lodash";
-import { Module, node } from "webpack";
 
 const gameField = document.querySelector(".game-field") as HTMLElement;
 const head = document.querySelector(".header2") as HTMLElement;
@@ -181,7 +179,7 @@ function game() {
         const cardId = element.id;
         selectedCards.push(cardId);
         element.src = cardId;
-  
+
         if (selectedCards.length % 2 === 0) {
           setTimeout(() => {
             if (
@@ -206,7 +204,7 @@ function game() {
           }, 200);
         }
       });
-    } 
+    }
   });
 }
 
@@ -214,9 +212,29 @@ const time: HTMLElement | null = document.querySelector(
   ".header2__stopwatch_content"
 );
 
-function stopWatch() {
-  let min: number = 0;
-  let sec: number = 0;
+// function stopWatch() {
+//   let min: number = 0;
+//   let sec: number = 0;
+
+//   window.timer = setInterval(() => {
+//     if (time) {
+//       sec++;
+//       if (sec === 59) {
+//         min++;
+//         sec = 0;
+//       }
+
+//       let timer: string = String(`0${min}: ${sec}`);
+
+//       time.textContent = timer;
+//       time.setAttribute("value", timer);
+//     }
+//   }, 1000);
+// }
+
+function stopWatch(): void {
+  let min = 0;
+  let sec = 0;
 
   window.timer = setInterval(() => {
     if (time) {
@@ -226,7 +244,7 @@ function stopWatch() {
         sec = 0;
       }
 
-      let timer: string = String(`0${min}: ${sec}`);
+      const timer = `0${min}:${sec < 10 ? 0 : ""}${sec}`;
 
       time.textContent = timer;
       time.setAttribute("value", timer);
